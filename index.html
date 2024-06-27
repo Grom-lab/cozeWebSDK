@@ -12,21 +12,79 @@
       setThemeClass();
     </script>
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      h1, h2 {
+        color: #333;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #content {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
   <body>
+    <h1>Добро пожаловать на сайт Викториана!</h1>
+    <p>Ваш мощный цифровой ассистент готов помочь вам в различных задачах.</p>
+
+    <button onclick="showFunctions()">Функции</button>
+    <button onclick="showCreatorInfo()">Информация о создателе</button>
+
+    <div id="content"></div>
+
     <script>
       Telegram.WebApp.ready();
       let tg = window.Telegram.WebApp;
       tg.expand();
 
-     new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7330310967135485957',
-            },
-            componentProps: {
-              title: 'Victo',
-            },
-          });
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7330310967135485957',
+        },
+        componentProps: {
+          title: 'Victo',
+        },
+      });
+
+      function showFunctions() {
+        document.getElementById('content').innerHTML = `
+          <h2>Функции</h2>
+          <ul>
+            <li>Сбор информации</li>
+            <li>Создание статей</li>
+            <li>Прогноз погоды</li>
+            <li>Создание изображений</li>
+            <li>Поиск видео</li>
+            <li>Исследование комиксов и персонажей</li>
+          </ul>
+        `;
+      }
+
+      function showCreatorInfo() {
+        document.getElementById('content').innerHTML = `
+          <h2>Информация о создателе</h2>
+          <p>Познакомьтесь с создателем и узнайте больше о том, как я был создан и какие технологии используются для моей работы.</p>
+        `;
+      }
     </script>
   </body>
 </html>
