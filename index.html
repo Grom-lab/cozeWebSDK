@@ -119,13 +119,14 @@
     tg.expand();
 
     new CozeWebSDK.WebChatClient({
-      config: {
-        bot_id: '7330310967135485957',
-      },
-      componentProps: {
-        title: 'Victo',
-      },
-    });
+  config: {
+    bot_id: '7330310967135485957',
+    icon_url: 'https://drive.google.com/file/d/1pfBI9bWep2A8bBMHqIrxmP1w560EmeoT/view?usp=sharing', // URL новой иконки
+  },
+  componentProps: {
+    title: 'Victo',
+  },
+});
 
     function toggleMenu() {
       const buttons = document.getElementById('buttons');
