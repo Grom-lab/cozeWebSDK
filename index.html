@@ -44,11 +44,15 @@
     }
     #buttons {
       display: none;
-      justify-content: center;
-      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      top: 20px;
+      right: 20px;
       background-color: #800020;
-      padding: 10px 0;
-      border-bottom: 2px solid #ddd;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     #content {
       margin-top: 20px;
@@ -70,10 +74,10 @@
     }
     .menu-button {
       position: fixed;
-      bottom: 20px;
+      top: 20px;
       right: 20px;
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       background-color: #800020;
       border-radius: 50%;
       display: flex;
@@ -83,8 +87,8 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .menu-button img {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -93,9 +97,9 @@
   <h1>VICTORIAN</h1>
   <div id="buttons">
     <button onclick="showAbout()">О себе</button>
-    <button onclick="showContacts()">Контакты</button>
     <button onclick="showFunctions()">Функции</button>
     <button onclick="showCreatorInfo()">Создатель</button>
+    <button onclick="showContacts()">Контакты</button>
   </div>
 
   <div id="content">
