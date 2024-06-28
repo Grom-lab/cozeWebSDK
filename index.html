@@ -1,249 +1,33 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://tg.dev/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
-    <style>
-      body {
-        font-family: 'Roboto', sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
-        margin: 0;
-        padding: 0;
-      }
-      .dark-theme {
-        background-color: #333;
-        color: #f5f5f5;
-      }
-      .header {
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .menu {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        color: #fff;
-        font-size: 24px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .menu-content {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
-        width: 200px;
-      }
-      .menu-content a {
-        display: block;
-        padding: 15px;
-        color: #333;
-        text-decoration: none;
-        border-bottom: 1px solid #f0f0f0;
-      }
-      .menu-content a:hover {
-        background-color: #f0f0f0;
-      }
-      .content {
-        margin: 20px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .language-switch {
-        margin: 20px;
-      }
-      .language-menu {
-        position: fixed;
-        top: 70px;
-        right: 10px;
-        background-color: #ff7e5f;
-        border-radius: 5px;
-        padding: 10px;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-      .language-menu button {
-        background-color: #fff;
-        color: #ff7e5f;
-        border: none;
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 3px;
-        transition: background-color 0.3s;
-      }
-      .language-menu button:hover {
-        background-color: #feb47b;
-      }
-      h1, h2 {
-        margin: 0;
-        padding: 0;
-      }
-      h2 {
-        margin-bottom: 10px;
-        color: #ff7e5f;
-      }
-    </style>
     <script>
       function setThemeClass() {
         document.documentElement.className = Telegram.WebApp.colorScheme;
       }
       Telegram.WebApp.onEvent("themeChanged", setThemeClass);
       setThemeClass();
-
-      function toggleMenu() {
-        const menuContent = document.getElementById('menuContent');
-        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
-      }
-
-      function changeLanguage(lang) {
-        document.documentElement.lang = lang;
-        const translations = {
-          ru: {
-            home: 'Главная страница',
-            functions: 'Функции',
-            creator: 'Создатель',
-            contacts: 'Контакты',
-            info: 'Информация обо мне',
-            creatorInfo: 'Создатель: Albatas',
-            contactInfo: 'Почта: ray.man.81@list.ru',
-            changeTheme: 'Сменить тему',
-            language: 'Язык'
-          },
-          en: {
-            home: 'Home',
-            functions: 'Functions',
-            creator: 'Creator',
-            contacts: 'Contact',
-            info: 'Information about me',
-            creatorInfo: 'Creator: Albatas',
-            contactInfo: 'Email: ray.man.81@list.ru',
-            changeTheme: 'Change Theme',
-            language: 'Language'
-          },
-          fr: {
-            home: 'Page d\'accueil',
-            functions: 'Fonctions',
-            creator: 'Créateur',
-            contacts: 'Contact',
-            info: 'Informations sur moi',
-            creatorInfo: 'Créateur: Albatas',
-            contactInfo: 'Courriel: ray.man.81@list.ru',
-            changeTheme: 'Changer le thème',
-            language: 'Langue'
-          },
-          es: {
-            home: 'Página principal',
-            functions: 'Funciones',
-            creator: 'Creador',
-            contacts: 'Contacto',
-            info: 'Información sobre mí',
-            creatorInfo: 'Creador: Albatas',
-            contactInfo: 'Correo electrónico: ray.man.81@list.ru',
-            changeTheme: 'Cambiar tema',
-            language: 'Idioma'
-          }
-        };
-        document.getElementById('homeLink').innerText = translations[lang].home;
-        document.getElementById('functionsLink').innerText = translations[lang].functions;
-        document.getElementById('creatorLink').innerText = translations[lang].creator;
-        document.getElementById('contactsLink').innerText = translations[lang].contacts;
-        document.getElementById('changeThemeLink').innerText = translations[lang].changeTheme;
-        document.getElementById('languageLink').innerText = translations[lang].language;
-        document.getElementById('home').innerText = translations[lang].home;
-        document.getElementById('functions').innerText = translations[lang].functions;
-        document.getElementById('creator').innerText = translations[lang].creator;
-        document.getElementById('contacts').innerText = translations[lang].contacts;
-        document.getElementById('info').innerText = translations[lang].info;
-        document.getElementById('creator-info').innerText = translations[lang].creatorInfo;
-        document.getElementById('contact-info').innerText = translations[lang].contactInfo;
-      }
-
-      function showContent(contentId) {
-        const contents = document.getElementsByClassName('content');
-        for (let i = 0; i < contents.length; i++) {
-          contents[i].style.display = 'none';
-        }
-        document.getElementById(contentId).style.display = 'block';
-      }
-
-      function toggleTheme() {
-        document.body.classList.toggle('dark-theme');
-      }
     </script>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
   </head>
   <body>
-    <div class="header">
-      <h1>VICTORIAN</h1>
-    </div>
-    <div class="menu" onclick="toggleMenu()">
-      ☰
-    </div>
-    <div id="menuContent" class="menu-content">
-      <a href="#" id="homeLink" onclick="showContent('home')">Главная страница</a>
-      <a href="#" id="functionsLink" onclick="showContent('functions')">Функции</a>
-      <a href="#" id="creatorLink" onclick="showContent('creator')">Создатель</a>
-      <a href="#" id="contactsLink" onclick="showContent('contacts')">Контакты</a>
-      <a href="#" id="changeThemeLink" onclick="toggleTheme()">Сменить тему</a>
-      <div class="language-switch">
-        <span id="languageLink">Язык</span>
-        <select onchange="changeLanguage(this.value)">
-          <option value="ru">Русский</option>
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-        </select>
-      </div>
-    </div>
-    <div id="home" class="content">
-      <h2>Главная страница</h2>
-      <p>Я Викториан, мощный цифровой помощник, созданный для помощи в различных задачах.</p>
-    </div>
-    <div id="functions" class="content" style="display: none;">
-      <h2>Функции</h2>
-      <ul>
-        <li>Сбор данных и новостей</li>
-        <li>Создание статей</li>
-        <li>Проверка погодных условий</li>
-        <li>Создание изображений</li>
-        <li>Идентификация деталей о комиксах и их персонажах</li>
-        <li>Помощь в загрузке видео с YouTube</li>
-        <li>Создание и управление событиями в календаре</li>
-        <li>Конвертация изображений</li>
-        <li>Поиск информации в Википедии</li>
-      </ul>
-    </div>
-    <div id="creator" class="content" style="display: none;">
-      <h2>Создатель</h2>
-      <p id="creator-info">Создатель: Albatas</p>
-    </div>
-    <div id="contacts" class="content" style="display: none;">
-      <h2>Контакты</h2>
-      <p id="contact-info">Почта: ray.man.81@list.ru</p>
-    </div>
-    <div id="info" class="content" style="display: none;">
-      <h2>Информация обо мне</h2>
-      <p>Я обладаю множеством полезных функций, которые помогут вам в различных ситуациях. Вы можете использовать меня для поиска информации, создания контента, управления событиями и многого другого. Просто выберите нужную функцию в меню и начните использовать мои возможности!</p>
-    </div>
+
+    <script>
+      Telegram.WebApp.ready();
+      let tg = window.Telegram.WebApp;
+      tg.expand();
+
+     new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7330310967135485957',
+            },
+            componentProps: {
+              title: 'Victo',
+            },
+          });
+    </script>
   </body>
 </html>
