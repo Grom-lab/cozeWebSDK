@@ -4,27 +4,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://tg.dev/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
     <style>
       body {
         font-family: 'Roboto', sans-serif;
         background-color: #f5f5f5;
         color: #333;
+        margin: 0;
+        padding: 0;
       }
       .dark-theme {
         background-color: #333;
         color: #f5f5f5;
       }
       .header {
-        background-color: #800000;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
         color: #fff;
-        padding: 15px;
+        padding: 20px;
         text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .menu {
         position: fixed;
         top: 10px;
         right: 10px;
-        background-color: #800000;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
         border-radius: 50%;
         width: 50px;
         height: 50px;
@@ -34,29 +38,35 @@
         cursor: pointer;
         color: #fff;
         font-size: 24px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .menu-content {
         display: none;
         position: absolute;
         top: 60px;
-        right: 0;
+        right: 10px;
         background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
         overflow: hidden;
         width: 200px;
       }
       .menu-content a {
         display: block;
-        padding: 10px;
-        color: #800000;
+        padding: 15px;
+        color: #333;
         text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
       }
       .menu-content a:hover {
         background-color: #f0f0f0;
       }
       .content {
         margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .language-switch {
         margin: 20px;
@@ -65,7 +75,7 @@
         position: fixed;
         top: 70px;
         right: 10px;
-        background-color: #800000;
+        background-color: #ff7e5f;
         border-radius: 5px;
         padding: 10px;
         color: #fff;
@@ -75,14 +85,23 @@
       }
       .language-menu button {
         background-color: #fff;
-        color: #800000;
+        color: #ff7e5f;
         border: none;
         padding: 5px;
         cursor: pointer;
         border-radius: 3px;
+        transition: background-color 0.3s;
       }
       .language-menu button:hover {
-        background-color: #f0f0f0;
+        background-color: #feb47b;
+      }
+      h1, h2 {
+        margin: 0;
+        padding: 0;
+      }
+      h2 {
+        margin-bottom: 10px;
+        color: #ff7e5f;
       }
     </style>
     <script>
@@ -208,6 +227,10 @@
         <li>Проверка погодных условий</li>
         <li>Создание изображений</li>
         <li>Идентификация деталей о комиксах и их персонажах</li>
+        <li>Помощь в загрузке видео с YouTube</li>
+        <li>Создание и управление событиями в календаре</li>
+        <li>Конвертация изображений</li>
+        <li>Поиск информации в Википедии</li>
       </ul>
     </div>
     <div id="creator" class="content" style="display: none;">
@@ -218,18 +241,9 @@
       <h2>Контакты</h2>
       <p id="contact-info">Почта: ray.man.81@list.ru</p>
     </div>
-    <script>
-      Telegram.WebApp.ready();
-      let tg = window.Telegram.WebApp;
-      tg.expand();
-    </script>
-    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
-    <script>
-      new CozeWebSDK.WebChatClient({
-        config: {
-          bot_id: '7330310967135485957',
-        },
-        componentProps: {
-          title: 'Victo',
-        },
-      });
+    <div id="info" class="content" style="display: none;">
+      <h2>Информация обо мне</h2>
+      <p>Я обладаю множеством полезных функций, которые помогут вам в различных ситуациях. Вы можете использовать меня для поиска информации, создания контента, управления событиями и многого другого. Просто выберите нужную функцию в меню и начните использовать мои возможности!</p>
+    </div>
+  </body>
+</html>
