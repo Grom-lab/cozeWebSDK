@@ -10,6 +10,10 @@
         background-color: #f5f5f5;
         color: #333;
       }
+      .dark-theme {
+        background-color: #333;
+        color: #f5f5f5;
+      }
       .header {
         background-color: #800000;
         color: #fff;
@@ -75,13 +79,13 @@
 
       function changeLanguage(lang) {
         document.documentElement.lang = lang;
-        document.getElementById('home').innerText = lang === 'ru' ? 'Главная страница' : 'Home';
-        document.getElementById('functions').innerText = lang === 'ru' ? 'Функции' : 'Functions';
-        document.getElementById('creator').innerText = lang === 'ru' ? 'Создатель' : 'Creator';
-        document.getElementById('contacts').innerText = lang === 'ru' ? 'Контакты' : 'Contact';
-        document.getElementById('info').innerText = lang === 'ru' ? 'Информация обо мне' : 'Information about me';
-        document.getElementById('creator-info').innerText = lang === 'ru' ? 'Создатель: Albatas' : 'Creator: Albatas';
-        document.getElementById('contact-info').innerText = lang === 'ru' ? 'Почта: ray.man.81@list.ru' : 'Email: ray.man.81@list.ru';
+        document.getElementById('home').innerText = lang === 'ru' ? 'Главная страница' : lang === 'en' ? 'Home' : lang === 'fr' ? 'Page d\'accueil' : 'Página principal';
+        document.getElementById('functions').innerText = lang === 'ru' ? 'Функции' : lang === 'en' ? 'Functions' : lang === 'fr' ? 'Fonctions' : 'Funciones';
+        document.getElementById('creator').innerText = lang === 'ru' ? 'Создатель' : lang === 'en' ? 'Creator' : lang === 'fr' ? 'Créateur' : 'Creador';
+        document.getElementById('contacts').innerText = lang === 'ru' ? 'Контакты' : lang === 'en' ? 'Contact' : lang === 'fr' ? 'Contact' : 'Contacto';
+        document.getElementById('info').innerText = lang === 'ru' ? 'Информация обо мне' : lang === 'en' ? 'Information about me' : lang === 'fr' ? 'Informations sur moi' : 'Información sobre mí';
+        document.getElementById('creator-info').innerText = lang === 'ru' ? 'Создатель: Albatas' : lang === 'en' ? 'Creator: Albatas' : lang === 'fr' ? 'Créateur: Albatas' : 'Creador: Albatas';
+        document.getElementById('contact-info').innerText = lang === 'ru' ? 'Почта: ray.man.81@list.ru' : lang === 'en' ? 'Email: ray.man.81@list.ru' : lang === 'fr' ? 'Courriel: ray.man.81@list.ru' : 'Correo electrónico: ray.man.81@list.ru';
       }
 
       function showContent(contentId) {
@@ -90,6 +94,10 @@
           contents[i].style.display = 'none';
         }
         document.getElementById(contentId).style.display = 'block';
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
       }
     </script>
   </head>
@@ -105,8 +113,11 @@
       <a href="#" onclick="showContent('functions')">Функции</a>
       <a href="#" onclick="showContent('creator')">Создатель</a>
       <a href="#" onclick="showContent('contacts')">Контакты</a>
+      <a href="#" onclick="toggleTheme()">Сменить тему</a>
       <a href="#" onclick="changeLanguage('ru')">Русский</a>
       <a href="#" onclick="changeLanguage('en')">English</a>
+      <a href="#" onclick="changeLanguage('fr')">Français</a>
+      <a href="#" onclick="changeLanguage('es')">Español</a>
     </div>
     <div id="home" class="content">
       <h2>Главная страница</h2>
