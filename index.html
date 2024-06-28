@@ -1,3 +1,6 @@
+Конечно, давайте обновим сайт с учетом ваших пожеланий. Мы добавим новые кнопки в меню, изменим стиль на бордовый и выберем хороший шрифт для текста. Вот обновленный HTML-код:
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -6,13 +9,21 @@
     <script src="https://tg.dev/js/telegram-web-app.js"></script>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Roboto', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      .header {
+        background-color: #800000;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
       }
       .menu {
         position: fixed;
         top: 10px;
         right: 10px;
-        background-color: #333;
+        background-color: #800000;
         border-radius: 50%;
         width: 50px;
         height: 50px;
@@ -20,6 +31,8 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        color: #fff;
+        font-size: 24px;
       }
       .menu-content {
         display: none;
@@ -30,15 +43,19 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         overflow: hidden;
+        width: 200px;
       }
       .menu-content a {
         display: block;
         padding: 10px;
-        color: #333;
+        color: #800000;
         text-decoration: none;
       }
       .menu-content a:hover {
         background-color: #f0f0f0;
+      }
+      .content {
+        margin: 20px;
       }
       .language-switch {
         margin: 20px;
@@ -61,23 +78,60 @@
 
       function changeLanguage(lang) {
         document.documentElement.lang = lang;
+        document.getElementById('home').innerText = lang === 'ru' ? 'Главная страница' : 'Home';
+        document.getElementById('functions').innerText = lang === 'ru' ? 'Функции' : 'Functions';
+        document.getElementById('creator').innerText = lang === 'ru' ? 'Создатель' : 'Creator';
+        document.getElementById('contacts').innerText = lang === 'ru' ? 'Контакты' : 'Contact';
         document.getElementById('info').innerText = lang === 'ru' ? 'Информация обо мне' : 'Information about me';
-        document.getElementById('creator').innerText = lang === 'ru' ? 'Создатель: Albatas' : 'Creator: Albatas';
+        document.getElementById('creator-info').innerText = lang === 'ru' ? 'Создатель: Albatas' : 'Creator: Albatas';
+        document.getElementById('contact-info').innerText = lang === 'ru' ? 'Почта: ray.man.81@list.ru' : 'Email: ray.man.81@list.ru';
+      }
+
+      function showContent(contentId) {
+        const contents = document.getElementsByClassName('content');
+        for (let i = 0; i < contents.length; i++) {
+          contents[i].style.display = 'none';
+        }
+        document.getElementById(contentId).style.display = 'block';
       }
     </script>
   </head>
   <body>
+    <div class="header">
+      <h1>VICTORIAN</h1>
+    </div>
     <div class="menu" onclick="toggleMenu()">
       ☰
     </div>
     <div id="menuContent" class="menu-content">
+      <a href="#" onclick="showContent('home')">Главная страница</a>
+      <a href="#" onclick="showContent('functions')">Функции</a>
+      <a href="#" onclick="showContent('creator')">Создатель</a>
+      <a href="#" onclick="showContent('contacts')">Контакты</a>
       <a href="#" onclick="changeLanguage('ru')">Русский</a>
       <a href="#" onclick="changeLanguage('en')">English</a>
     </div>
-    <div class="info">
-      <h1 id="info">Информация обо мне</h1>
-      <p>Я виртуальный помощник, созданный для помощи в различных задачах.</p>
-      <p id="creator">Создатель: Albatas</p>
+    <div id="home" class="content">
+      <h2>Главная страница</h2>
+      <p>Я Викториан, мощный цифровой помощник, созданный для помощи в различных задачах.</p>
+    </div>
+    <div id="functions" class="content" style="display: none;">
+      <h2>Функции</h2>
+      <ul>
+        <li>Сбор данных и новостей</li>
+        <li>Создание статей</li>
+        <li>Проверка погодных условий</li>
+        <li>Создание изображений</li>
+        <li>Идентификация деталей о комиксах и их персонажах</li>
+      </ul>
+    </div>
+    <div id="creator" class="content" style="display: none;">
+      <h2>Создатель</h2>
+      <p id="creator-info">Создатель: Albatas</p>
+    </div>
+    <div id="contacts" class="content" style="display: none;">
+      <h2>Контакты</h2>
+      <p id="contact-info">Почта: ray.man.81@list.ru</p>
     </div>
     <script>
       Telegram.WebApp.ready();
@@ -97,3 +151,10 @@
     </script>
   </body>
 </html>
+```
+
+Этот код включает:
+- Круглое меню с кнопками для навигации по сайту, смены языка.
+- Блоки с информацией обо мне, моих функциях, создателе и контактах.
+- Бордовый стиль и шрифт Roboto для текста.
+- Название сайта VICTORIAN.
