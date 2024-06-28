@@ -1,222 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://tg.dev/js/telegram-web-app.js"></script>
-  <script>
-    function setThemeClass() {
-      document.documentElement.className = Telegram.WebApp.colorScheme;
-    }
-    Telegram.WebApp.onEvent("themeChanged", setThemeClass);
-    setThemeClass();
-  </script>
-  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: #f0f0f0;
-      color: #fff;
-    }
-    h1 {
-      font-size: 48px;
-      color: #fff;
-      margin: 20px 0;
-    }
-    h2 {
-      color: #fff;
-    }
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #800020;
-      color: white;
-    }
-    #buttons {
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #800020;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    #content {
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #800020;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .image-container {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-    }
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    .menu-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: #800020;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .menu-button img {
-      width: 20px;
-      height: 20px;
-    }
-    #language-selector {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #800020;
-      border-radius: 5px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <h1>VICTORIAN</h1>
-  <div id="buttons">
-    <button onclick="showAbout()">О себе</button>
-    <button onclick="showFunctions()">Функции</button>
-    <button onclick="showCreatorInfo()">Создатель</button>
-    <button onclick="showContacts()">Контакты</button>
-    <select id="language-selector" onchange="changeLanguage()">
-      <option value="ru">Русский</option>
-      <option value="en">English</option>
-    </select>
-  </div>
-
-  <div id="content">
-    <p>Добро пожаловать на сайт Викториана! Ваш мощный цифровой ассистент готов помочь вам в различных задачах.</p>
-    <div class="image-container">
-      <img src="https://example.com/neural_network_image.jpg" alt="Neural Network">
-    </div>
-  </div>
-
-  <div class="menu-button" onclick="toggleMenu()">
-    <img src="http://res.cloudinary.com/gabes/image/upload/v1719502470/bi8tufbfkuo6ingnpkdc.png" alt="Menu Icon">
-  </div>
-
-  <script>
-    Telegram.WebApp.ready();
-    let tg = window.Telegram.WebApp;
-    tg.expand();
-
-    new CozeWebSDK.WebChatClient({
-      config: {
-        bot_id: '7330310967135485957',
-        icon_url: 'https://drive.google.com/file/d/1pfBI9bWep2A8bBMHqIrxmP1w560EmeoT/view?usp=sharing', // URL новой иконки
-      },
-      componentProps: {
-        title: 'Victo',
-      },
-    });
-
-    function toggleMenu() {
-      const buttons = document.getElementById('buttons');
-      if (buttons.style.display === 'flex') {
-        buttons.style.display = 'none';
-      } else {
-        buttons.style.display = 'flex';
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://tg.dev/js/telegram-web-app.js"></script>
+    <script>
+      function setThemeClass() {
+        document.documentElement.className = Telegram.WebApp.colorScheme;
       }
-    }
+      Telegram.WebApp.onEvent("themeChanged", setThemeClass);
+      setThemeClass();
+    </script>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+  </head>
+  <body>
 
-    function showAbout() {
-      document.getElementById('content').innerHTML = `
-        <h2>О себе</h2>
-        <hr/>
-        <p>Викториан - мощный цифровой ассистент, созданный для помощи в сборе данных, создании статей, прогнозировании погоды, создании изображений, поиске видео и исследовании комиксов и персонажей.</p>
-        <div class="image-container">
-          <img src="https://example.com/neural_network_about.jpg" alt="Neural Network About">
-        </div>
-      `;
-    }
+    <script>
+      Telegram.WebApp.ready();
+      let tg = window.Telegram.WebApp;
+      tg.expand();
 
-    function showContacts() {
-      document.getElementById('content').innerHTML = `
-        <h2>Контакты</h2>
-        <hr/>
-        <p>Почта: <a href="mailto:ray.man.81@list.ru" style="color: #fff;">ray.man.81@list.ru</a></p>
-        <div class="image-container">
-          <img src="https://example.com/neural_network_contacts.jpg" alt="Neural Network Contacts">
-        </div>
-      `;
-    }
-
-    function showFunctions() {
-      document.getElementById('content').innerHTML = `
-        <h2>Функции</h2>
-        <hr/>
-        <p>Викториан обладает следующими функциями:</p>
-        <ul style="text-align: left;">
-          <li>Сбор информации</li>
-          <li>Создание статей</li>
-          <li>Прогноз погоды</li>
-          <li>Создание изображений</li>
-          <li>Поиск видео</li>
-          <li>Исследование комиксов и персонажей</li>
-        </ul>
-        <div class="image-container">
-          <img src="https://example.com/neural_network_functions.jpg" alt="Neural Network Functions">
-        </div>
-      `;
-    }
-
-    function showCreatorInfo() {
-      document.getElementById('content').innerHTML = `
-        <h2>Создатель</h2>
-        <hr/>
-        <p>Создателем Викториана является @albatas.</p>
-        <p>Викториан - мощный цифровой ассистент, созданный для помощи в сборе данных, создании статей, прогнозировании погоды, создании изображений, поиске видео и исследовании комиксов и персонажей. Он использует передовые технологии и интеграции для предоставления точной и полезной информации.</p>
-        <div class="image-container">
-          <img src="https://example.com/neural_network_creator.jpg" alt="Neural Network Creator">
-        </div>
-      `;
-    }
-
-    function changeLanguage() {
-      const languageSelector = document.getElementById('language-selector');
-      const selectedLanguage = languageSelector.value;
-
-      if (selectedLanguage === 'en') {
-        document.querySelector('h1').textContent = 'VICTORIAN';
-        document.querySelector('p').textContent = 'Welcome to the Victorian site! Your powerful digital assistant is ready to help you with various tasks.';
-        document.querySelector('button[onclick="showAbout()"]').textContent = 'About';
-        document.querySelector('button[onclick="showFunctions()"]').textContent = 'Functions';
-        document.querySelector('button[onclick="showCreatorInfo()"]').textContent = 'Creator';
-        document.querySelector('button[onclick="showContacts()"]').textContent = 'Contacts';
-        showAbout = function() {
-          document.getElementById('content').innerHTML = `
-            <h2>About</h2>
-            <hr/>
-            <p>Victorian is a powerful digital assistant designed to help with data collection, article creation, weather forecasting, image creation, video search, and comic and character research.</p>
-            <div
+     new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7330310967135485957',
+            },
+            componentProps: {
+              title: 'Victo',
+            },
+          });
+    </script>
+  </body>
+</html>
