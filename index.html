@@ -90,6 +90,15 @@
       width: 20px;
       height: 20px;
     }
+    #language-selector {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #800020;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -100,6 +109,10 @@
     <button onclick="showFunctions()">Функции</button>
     <button onclick="showCreatorInfo()">Создатель</button>
     <button onclick="showContacts()">Контакты</button>
+    <select id="language-selector" onchange="changeLanguage()">
+      <option value="ru">Русский</option>
+      <option value="en">English</option>
+    </select>
   </div>
 
   <div id="content">
@@ -119,14 +132,14 @@
     tg.expand();
 
     new CozeWebSDK.WebChatClient({
-  config: {
-    bot_id: '7330310967135485957',
-    icon_url: 'https://drive.google.com/file/d/1pfBI9bWep2A8bBMHqIrxmP1w560EmeoT/view?usp=sharing', // URL новой иконки
-  },
-  componentProps: {
-    title: 'Victo',
-  },
-});
+      config: {
+        bot_id: '7330310967135485957',
+        icon_url: 'https://drive.google.com/file/d/1pfBI9bWep2A8bBMHqIrxmP1w560EmeoT/view?usp=sharing', // URL новой иконки
+      },
+      componentProps: {
+        title: 'Victo',
+      },
+    });
 
     function toggleMenu() {
       const buttons = document.getElementById('buttons');
@@ -189,6 +202,21 @@
         </div>
       `;
     }
-  </script>
-</body>
-</html>
+
+    function changeLanguage() {
+      const languageSelector = document.getElementById('language-selector');
+      const selectedLanguage = languageSelector.value;
+
+      if (selectedLanguage === 'en') {
+        document.querySelector('h1').textContent = 'VICTORIAN';
+        document.querySelector('p').textContent = 'Welcome to the Victorian site! Your powerful digital assistant is ready to help you with various tasks.';
+        document.querySelector('button[onclick="showAbout()"]').textContent = 'About';
+        document.querySelector('button[onclick="showFunctions()"]').textContent = 'Functions';
+        document.querySelector('button[onclick="showCreatorInfo()"]').textContent = 'Creator';
+        document.querySelector('button[onclick="showContacts()"]').textContent = 'Contacts';
+        showAbout = function() {
+          document.getElementById('content').innerHTML = `
+            <h2>About</h2>
+            <hr/>
+            <p>Victorian is a powerful digital assistant designed to help with data collection, article creation, weather forecasting, image creation, video search, and comic and character research.</p>
+            <div
