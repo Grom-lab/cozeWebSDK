@@ -3,6 +3,96 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VICTORIAN - Virtual Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .menu {
+        background-color: #333;
+        overflow: hidden;
+      }
+      .menu a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .menu a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .content {
+        padding: 20px;
+      }
+      .theme-toggle {
+        float: right;
+        padding: 14px 16px;
+        cursor: pointer;
+        color: white;
+      }
+      .color-toggle {
+        float: right;
+        padding: 14px 16px;
+        cursor: pointer;
+        color: white;
+      }
+      .dark-theme {
+        background-color: #121212;
+        color: white;
+      }
+      .dark-theme .menu {
+        background-color: #222;
+      }
+      .dark-theme .menu a {
+        color: white;
+      }
+      .dark-theme .menu a:hover {
+        background-color: #444;
+        color: white;
+      }
+      .light-theme {
+        background-color: white;
+        color: black;
+      }
+      .light-theme .menu {
+        background-color: #333;
+      }
+      .light-theme .menu a {
+        color: white;
+      }
+      .light-theme .menu a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        margin: 20px 0;
+      }
+      .button:hover {background-color: #3e8e41}
+      .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+    </style>
     <script src="https://tg.dev/js/telegram-web-app.js"></script>
     <script>
       function setThemeClass() {
@@ -13,21 +103,84 @@
     </script>
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
   </head>
-  <body>
+  <body class="light-theme">
+    <div class="menu">
+      <a href="#home">Main Page</a>
+      <a href="#functions">Functions</a>
+      <a href="#creator">Creator</a>
+      <a href="#contacts">Contacts</a>
+      <div class="theme-toggle" onclick="toggleTheme()">Toggle Theme</div>
+      <div class="color-toggle" onclick="toggleColors()">Change Colors</div>
+    </div>
+
+    <div id="home" class="content">
+      <h1>Welcome to VICTORIAN's Website</h1>
+      <p>Hi! I am VICTORIAN, your powerful digital assistant. I am here to help you with a variety of tasks, from collecting data and news to creating articles, understanding meteorological conditions, creating images, and identifying details about comics and their characters.</p>
+      <button class="button" onclick="toggleColors()">Change Colors</button>
+    </div>
+
+    <div id="functions" class="content">
+      <h1>Functions</h1>
+      <ul>
+        <li>Get information from various sources</li>
+        <li>Create articles based on user suggestions or prompts</li>
+        <li>Provide weather updates or forecasts</li>
+        <li>Create images from text descriptions</li>
+        <li>Assist in downloading videos from YouTube</li>
+        <li>Research comics, animations, and characters</li>
+      </ul>
+    </div>
+
+    <div id="creator" class="content">
+      <h1>Creator</h1>
+      <p>This virtual assistant is created by Albatros.</p>
+    </div>
+
+    <div id="contacts" class="content">
+      <h1>Contacts</h1>
+      <p>If you have any questions or need assistance, please contact us at <a href="mailto:ray.man.81@list.ru">ray.man.81@list.ru</a>.</p>
+    </div>
 
     <script>
       Telegram.WebApp.ready();
       let tg = window.Telegram.WebApp;
       tg.expand();
 
-     new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7330310967135485957',
-            },
-            componentProps: {
-              title: 'Victo',
-            },
-          });
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7330310967135485957',
+        },
+        componentProps: {
+          title: 'Victo',
+        },
+      });
+
+      function toggleTheme() {
+        const body = document.body;
+        if (body.classList.contains('light-theme')) {
+          body.classList.remove('light-theme');
+          body.classList.add('dark-theme');
+        } else {
+          body.classList.remove('dark-theme');
+          body.classList.add('light-theme');
+        }
+      }
+
+      function toggleColors() {
+        const root = document.documentElement;
+        if (root.style.getPropertyValue('--primary-color') === '#4CAF50') {
+          root.style.setProperty('--primary-color', '#FF5722');
+          root.style.setProperty('--hover-color', '#E64A19');
+          root.style.setProperty('--active-color', '#D84315');
+        } else {
+          root.style.setProperty('--primary-color', '#4CAF50');
+          root.style.setProperty('--hover-color', '#3e8e41');
+          root.style.setProperty('--active-color', '#3e8e41');
+        }
+        document.querySelectorAll('.button').forEach(button => {
+          button.style.backgroundColor = getComputedStyle(root).getPropertyValue('--primary-color');
+        });
+      }
     </script>
   </body>
 </html>
