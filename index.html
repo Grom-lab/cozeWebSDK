@@ -186,12 +186,15 @@
       <a href="#" id="creatorLink" onclick="showContent('creator')">Создатель</a>
       <a href="#" id="contactsLink" onclick="showContent('contacts')">Контакты</a>
       <a href="#" id="changeThemeLink" onclick="toggleTheme()">Сменить тему</a>
-    </div>
-    <div class="language-menu">
-      <button onclick="changeLanguage('ru')">Русский</button>
-      <button onclick="changeLanguage('en')">English</button>
-      <button onclick="changeLanguage('fr')">Français</button>
-      <button onclick="changeLanguage('es')">Español</button>
+      <div class="language-switch">
+        <span id="languageLink">Язык</span>
+        <select onchange="changeLanguage(this.value)">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
     </div>
     <div id="home" class="content">
       <h2>Главная страница</h2>
