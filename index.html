@@ -1,33 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://tg.dev/js/telegram-web-app.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #333;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .menu-content {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .menu-content a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+      }
+      .menu-content a:hover {
+        background-color: #f0f0f0;
+      }
+      .language-switch {
+        margin: 20px;
+      }
+      .info {
+        margin: 20px;
+      }
+    </style>
     <script>
       function setThemeClass() {
         document.documentElement.className = Telegram.WebApp.colorScheme;
       }
       Telegram.WebApp.onEvent("themeChanged", setThemeClass);
       setThemeClass();
+
+      function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+      }
+
+      function changeLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.getElementById('info').innerText = lang === 'ru' ? 'Информация обо мне' : 'Information about me';
+        document.getElementById('creator').innerText = lang === 'ru' ? 'Создатель: Albatas' : 'Creator: Albatas';
+      }
     </script>
-    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
   </head>
   <body>
-
+    <div class="menu" onclick="toggleMenu()">
+      ☰
+    </div>
+    <div id="menuContent" class="menu-content">
+      <a href="#" onclick="changeLanguage('ru')">Русский</a>
+      <a href="#" onclick="changeLanguage('en')">English</a>
+    </div>
+    <div class="info">
+      <h1 id="info">Информация обо мне</h1>
+      <p>Я виртуальный помощник, созданный для помощи в различных задачах.</p>
+      <p id="creator">Создатель: Albatas</p>
+    </div>
     <script>
       Telegram.WebApp.ready();
       let tg = window.Telegram.WebApp;
       tg.expand();
-
-     new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7330310967135485957',
-            },
-            componentProps: {
-              title: 'Victo',
-            },
-          });
+    </script>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+    <script>
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7330310967135485957',
+        },
+        componentProps: {
+          title: 'Victo',
+        },
+      });
     </script>
   </body>
 </html>
